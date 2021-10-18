@@ -1,0 +1,166 @@
+$gray: #A5A7B7;
+$violet: #837EFC;
+$backgtound-gray: #F0F3F6;
+$black: #585471;
+
+.header {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 20px 95px 20px 60px;
+    display: flex;
+    align-items: center;
+    color: $gray;
+
+    &-logo {
+        padding-top: 7px;
+    }
+
+    &-links {
+        margin-left: 150px;
+
+        &-link {
+            font-weight: bold;
+            font-size: 16px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        &-link:hover {
+            color: $violet;
+        }
+
+        &-link + &-link {
+            margin-left: 80px;
+        }
+    }
+
+    &-dropdown {
+        margin-left: auto;
+
+        &-avatar {
+            border-radius: 50%;
+        }
+    }
+}
+
+.wrapper {
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+.add-project {
+    //перебить стили семантика, незнаю может есть способ лучше чем в "упор", всегда работал с материал там знаю как без импорта сделать
+    display: block !important;
+    margin-left: auto !important;
+}
+
+.projects {
+    //перебить стили семантика, незнаю может есть способ лучше чем в "упор", всегда работал с материал там знаю как без импорта сделать
+    margin-top: 50px !important;
+}
+
+.project {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // width: 262px;
+    height: 262px;
+    background-color: $backgtound-gray;
+    color: $black;
+    border-radius: 24px;
+    border: 1px solid #F0F3F6;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+        box-shadow: 0px 0px 30px rgba(131, 126, 252, 0.7);
+        border-color: transparent;
+        background-color: $violet;
+        color: #fff;
+
+        .project-repositories-icon {
+            stroke: #fff;
+        }
+    }
+
+    &-header {
+        padding-top: 30px; // чтобы не использовать импортант для перебитя стилей сематика использовал паадинг вместо маргина
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+    &-description {
+        margin-top: 25px;
+        padding: 0 25px;
+        font-size: 12px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 6;
+        -webkit-box-orient: vertical;
+        // почти на всех новых браузерах работает (троеточнии при переполнении в конце абзаца)
+    }
+
+    &-repositories {
+        margin-top: auto;
+        margin-bottom: 25px;
+        display: flex;
+        align-items: center;
+
+        &-icon {
+            margin-right: 10px;
+            stroke: $violet;
+        }
+
+        &-text{
+            font-size: 16px;
+            font-weight: bold;
+        }
+    }
+}
+
+.message {
+    max-width: 50vw;
+    margin: 0 auto !important;
+
+    .header {
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    .add-project {
+        margin-right: 95px!important;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .header {
+        padding-left: 25px;
+        padding-right: 25px;
+        &-links {
+            margin-left: 50px;
+
+            &-link + &-link {
+                margin-left: 30px;
+            }
+        }
+    }
+
+    .add-project {
+        margin: 0 auto !important;
+    }
+}
+
+@media screen and (max-width: 490px) {
+    .header {
+        &-logo {
+            display: none;
+        }
+
+        &-links {
+            margin: 0;
+        }
+    }
+}
