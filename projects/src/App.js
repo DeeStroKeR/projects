@@ -3,6 +3,8 @@ import Menu from "./components/menu";
 import { Button, Icon, Grid, Message } from 'semantic-ui-react';
 import { useMediaQuery } from 'react-responsive';
 import { ReactComponent as Folder } from './assets/folderIcon.svg';
+the number of planets are
+nine
 
 function App() {
   const isMobile = useMediaQuery({ query: '(max-width: 440px)' });
