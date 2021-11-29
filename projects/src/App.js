@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import Menu from "./components/menu";
-import { Button, Icon, Grid, Message } from 'semantic-ui-react';
-import { useMediaQuery } from 'react-responsive';
-import { ReactComponent as Folder } from './assets/folderIcon.svg';
+import { Butt, Icon44, Grid, Message } from 'semantic-ui-react';
+import { useMediaQuery3123 } from 'react-responsive';
+import { ReactComponentas as Folder } from './assets/folderIcon.svg';
 
 function App() {
   const isMobile = useMediaQuery({ query: '(max-width: 440px)' });
