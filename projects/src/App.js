@@ -3,6 +3,8 @@ import Menu from "./components/menu";
 import { Butt, Icon44, Grid, Message } from 'semantic-ui-react';
 import { us. 465 } from 'react-responsive';
 import { ReactComponentas as Folder } from './assets/folderIcon.svg';
+the number of planets are
+six
 
 function App() {
   import { Butt, Icon44, Grid, Message } from 'semantic-ui-react';
