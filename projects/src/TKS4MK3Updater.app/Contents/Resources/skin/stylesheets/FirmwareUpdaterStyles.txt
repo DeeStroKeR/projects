@@ -1,0 +1,942 @@
+
+
+// -----------------------------------------------------------------------------------------------
+// Colors
+// -----------------------------------------------------------------------------------------------
+
+@define $colorBlack					rgb( 0, 0, 0 );				//basic colors
+@define $colorWhite 				rgb( 255, 255, 255 );
+
+@define $colorBackground			rgb( 242, 242, 242 );
+
+@define $colorButtonFont			rgba( 16, 35, 49, 230 );	//button colors
+@define $colorButtonFontOver		rgb( 70, 100, 122 );
+@define $colorButtonFontDisabled	rgb( 182, 195, 203 );
+
+@define $colorNavi					rgba( 10, 20, 26, 230 );	//tab colors
+@define $colorNaviDisabled			rgba( 10, 20, 26, 76 );
+@define $colorNaviOver				rgb( 103, 110, 115 );
+
+@define $colorHeadline				rgba( 22, 52, 74, 230 );
+
+@define $colorLabel					rgba( 10, 20, 26, 230 );
+
+
+// -----------------------------------------------------------------------------------------------
+// Fonts
+// -----------------------------------------------------------------------------------------------
+
+@define $fontRaldoId        		url( "raldo.ttf" );
+@define $fontButtonSize				13;
+@define $fontLabelSize				12;
+@define $fontOverlaySize			12;
+
+
+// -----------------------------------------------------------------------------------------------
+// Graphics
+// -----------------------------------------------------------------------------------------------
+
+@define $iconBigStatus				url( "Icon_Big_Status.png" );
+@define $iconSmallStatus			url( "Icon_Small_Status.png" );
+
+
+/***********************************************************************************************************************
+ _____ _                                      _   _           _       _            
+|  ___(_)_ __ _ __ _____      ____ _ _ __ ___| | | |_ __   __| | __ _| |_ ___ _ __ 
+| |_  | | '__| '_ ` _ \ \ /\ / / _` | '__/ _ \ | | | '_ \ / _` |/ _` | __/ _ \ '__|
+|  _| | | |  | | | | | \ V  V / (_| | | |  __/ |_| | |_) | (_| | (_| | ||  __/ |   
+|_|   |_|_|  |_| |_| |_|\_/\_/ \__,_|_|  \___|\___/| .__/ \__,_|\__,_|\__\___|_|   
+                                                   |_|                             
+***********************************************************************************************************************/
+
+//// MainWidget ////
+
+*.FirmwareUpdaterMainWidget
+{
+	background-color: 			$colorBackground;
+	width: 						628px;
+	height: 					336px;
+}
+
+
+//// TitlePanel ////
+
+Bar#FirmwareUpdaterTitlePanel // was: Bar#DeviceUpdaterTitlePanel
+{
+	image: 						url( "Bg_Header_FU.png" );
+	outer-margin: 				9px;
+}
+
+
+Button#FirmwareUpdaterTitlePanelAbout
+{
+	image: 						url( "Logo_NI.png" );
+    y: 							9px;
+    x: 							570px;
+}
+
+
+Label#FirmwareUpdaterTitlePanelHeadline
+{
+    width: 						609px;
+	horizontal-alignment: 		center;
+	vertical-alignment: 		center;
+	font-name:				 	$fontRaldoId;
+	font-size: 					13;
+	foreground-color: 			$colorButtonFont;
+}
+
+
+//// BodyPanel ////
+
+Bar#FirmwareUpdaterBodyPanel // merged from: Bar#DeviceUpdaterBodyPanel, -Left, -Right
+{
+	background-color: $colorBackground;
+	height: 					270px;
+	outer-margin-left: 			9px;
+	outer-margin-right: 		9px;
+	outer-margin-bottom: 		9px;
+	image: 						url( "Bg_Inner_FU.png" );
+	fixed-left: 				5; 
+	fixed-right: 				5; 
+	fixed-top: 					5; 
+	fixed-bottom: 				5;
+	width: 						609px;
+	margin-right: 				18px;
+	margin-left: 				19px;
+	margin-top: 				19px;
+	picture-includes-margin: 	true;
+	spacing: 					18px;
+}
+
+
+//// InfoPanel ////
+
+Bar#FirmwareUpdaterInfoPanel  // was: DeviceUpdaterBodyPanelRightBody
+{
+	image: 						url( "Bg_Status.png" );
+	fixed-left:					6; 
+	fixed-right: 				6;
+	fixed-top:					6;
+	fixed-bottom: 				6;
+	animations: 				3;
+	width: 						570px;
+	height: 					71px;	
+	margin-left: 				12px;
+	spacing: 					10px;
+	picture-includes-margin: 	true;
+	vertical-alignment:			center;
+	font-name: 					$fontRaldoId;
+	font-size: 					$fontLabelSize;
+	foreground-color: 			$colorButtonFont;
+}
+
+Bar#FirmwareUpdaterInfoPanel[ background=error ] 
+{
+	animation-index:			0; 
+}
+
+Bar#FirmwareUpdaterInfoPanel[ background=ok ]    
+{
+	animation-index: 			1;
+}
+
+Bar#FirmwareUpdaterInfoPanel[ background=info ]
+{
+	animation-index: 			2; 
+}
+
+
+//// InfoPanelIcon ////
+
+Label#FirmwareUpdaterInfoPanelIcon // was: DeviceUpdaterInfoLabel
+{
+	image: 						$iconBigStatus;
+	animations: 				2;
+	outer-margin-top: 			23px;
+}
+
+Label#FirmwareUpdaterInfoPanelIcon[ icon=ok ] 
+{ 
+	animation-index: 			0; 
+}
+
+Label#FirmwareUpdaterInfoPanelIcon[ icon=error ]
+{ 
+	animation-index:			1; 
+}
+
+//// Info Panel SpinningProgressWheel ////
+
+Bar#FirmwareUpdaterSpinningProgressWheel
+{
+    outer-margin-top: 			21px;
+    outer-margin-right: 		1;
+	image:						url( "Busywheel.png" );
+	animations: 				12;
+}
+
+Bar#FirmwareUpdaterSpinningProgressWheel[ step=S0  ] { animation-index: 0; }
+Bar#FirmwareUpdaterSpinningProgressWheel[ step=S1  ] { animation-index: 1; }
+Bar#FirmwareUpdaterSpinningProgressWheel[ step=S2  ] { animation-index: 2; }
+Bar#FirmwareUpdaterSpinningProgressWheel[ step=S3  ] { animation-index: 3; }
+Bar#FirmwareUpdaterSpinningProgressWheel[ step=S4  ] { animation-index: 4; }
+Bar#FirmwareUpdaterSpinningProgressWheel[ step=S5  ] { animation-index: 5; }
+Bar#FirmwareUpdaterSpinningProgressWheel[ step=S6  ] { animation-index: 6; }
+Bar#FirmwareUpdaterSpinningProgressWheel[ step=S7  ] { animation-index: 7; }
+Bar#FirmwareUpdaterSpinningProgressWheel[ step=S8  ] { animation-index: 8; }
+Bar#FirmwareUpdaterSpinningProgressWheel[ step=S9  ] { animation-index: 9; }
+Bar#FirmwareUpdaterSpinningProgressWheel[ step=S10 ] { animation-index: 10; }
+Bar#FirmwareUpdaterSpinningProgressWheel[ step=S11 ] { animation-index: 11; }
+
+
+
+//// InfoPanelLabel ////
+
+Bar#FirmwareUpdaterInfoPanelLabelBar
+{
+	background-color: 			no;
+	width: 						525px;
+}
+
+MultilineLabel#FirmwareUpdaterInfoPanelLabel // was: DeviceUpdaterLowerLabel
+{
+	width: 						520px;
+	font-name: 					$fontRaldoId;
+	font-size: 					$fontLabelSize;
+	foreground-color: 			$colorButtonFont;
+	vertical-alignment:			center;
+	margin-top: 				1px;
+}
+
+
+//// Button Panel ////
+
+Bar#FirmwareUpdaterButtonPanel // was: DeviceUpdaterBodyPanelRightButtons
+{
+	width: 						571px;
+	height: 					33px;
+	outer-margin-top: 			6px;
+	spacing: 					7;
+}
+
+
+Button#FirmwareUpdaterButtonAction, // was: DeviceUpdaterButtonNext
+Button#FirmwareUpdaterButtonQuit
+{
+	image: 						url( "button_forward_FU.png" );
+	animations:					7;
+	margin-top: 				1px;
+	picture-includes-margin: 	true;
+	margin-left: 				-1px;
+	horizontal-alignment: 		center;
+	font-name: 					$fontRaldoId;
+	font-size: 					$fontButtonSize;
+	foreground-color: 			$colorButtonFont;
+}
+
+
+Button#FirmwareUpdaterButtonAction[hasFocus=true],
+Button#FirmwareUpdaterButtonQuit[hasFocus=true]
+{
+	image: 						url( "button_forward_focus_FU.png" );
+	animations:					7;
+	picture-includes-margin: 	true;
+}
+
+
+Button#FirmwareUpdaterButtonAction:selected,
+Button#FirmwareUpdaterButtonQuit:selected
+{
+	animation-index: 			1;
+}
+
+Button#FirmwareUpdaterButtonAction:down,
+Button#FirmwareUpdaterButtonQuit:down
+{
+	animation-index: 			2;
+}
+
+Button#FirmwareUpdaterButtonAction:selected:down,
+Button#FirmwareUpdaterButtonQuit:selected:down
+{
+	animation-index: 			3;
+}
+
+Button#FirmwareUpdaterButtonAction:over,
+Button#FirmwareUpdaterButtonQuit:over
+{
+	animation-index: 			4;
+	foreground-color: 			$colorButtonFontOver;
+}
+
+Button#FirmwareUpdaterButtonAction:selected:over,
+Button#FirmwareUpdaterButtonQuit:selected:over
+{
+	animation-index: 			5;
+	foreground-color: 			$colorButtonFontOver;
+}
+
+Button#FirmwareUpdaterButtonAction:!enabled,
+Button#FirmwareUpdaterButtonQuit:!enabled,
+Button#FirmwareUpdaterButtonAction:focus,
+Button#FirmwareUpdaterButtonQuit:focus
+{
+	animation-index: 			6;
+	foreground-color: 			$colorButtonFontDisabled;
+}
+
+
+//// FirmwarePanel ////
+
+Bar#FirmwareUpdaterFirmwarePanel // merged: .DataPanel + #DeviceUpdaterBodyPanelRightTop
+{
+ 	image: 						url( "Bg_Content.png" );
+	fixed: 						6px; 
+	picture-includes-margin: 	true;
+	spacing:					9px;  
+	width: 						571px;
+	height: 					92px; // was: 129px
+}
+
+
+Bar#FirmwareUpdaterFirmwarePanelBody // was: #Body
+{
+	fixed-left: 				3;
+	fixed-top: 					3;
+	fixed-right: 				3;
+	fixed-bottom: 				3;
+	height: 					92px;
+}
+
+
+Bar#FirmwareUpdaterFirmwarePanelRevisions // was: #DeviceUpdaterInfoPanelLeft
+{
+	background-color: 			no;
+	spacing: 					9px;
+	width: 						421px;
+	margin: 					10;
+}
+
+
+Bar#FirmwareUpdaterFirmwarePanelRevisionsRow // was: Row
+{
+	outer-margin-left: 			0px;
+	spacing: 					9px;
+}
+
+
+Label.FirmwareUpdaterNewestFirmwareRevisionValue // was: ValueFirmwareNew
+{
+	image: 						url( "Text_Display.png" );
+	animations: 				4;
+	margin-top: 				1px;
+	picture-includes-margin:	true;
+	font-name: 					$fontRaldoId;
+	font-size: 					$fontLabelSize;
+	horizontal-alignment: 		center;
+	foreground-color:			$colorButtonFont;	
+}
+
+
+Label.FirmwareUpdaterNewestFirmwareRevisionLabel // was: LabelFirmwareNew
+{
+	font-name: 					$fontRaldoId;
+	font-size: 					$fontLabelSize;
+	foreground-color: 			$colorLabel;
+	margin-top: 				1px;
+	width: 						128px;
+}
+
+
+Label.FirmwareUpdaterInstalledFirmwareRevisionValue // was: .ValueFirmwareInst
+{
+	image: 						url( "Text_Display.png" );
+	animations: 				4;
+	animation-index: 			0;
+	margin-top: 				1px;
+	picture-includes-margin: 	true;
+	font-name: 					$fontRaldoId;
+	font-size: 					$fontLabelSize;
+	horizontal-alignment: 		center;
+	foreground-color: 			$colorButtonFont;
+}
+
+Label.FirmwareUpdaterInstalledFirmwareRevisionValue[ state=neutral ] { animation-index: 0; }
+Label.FirmwareUpdaterInstalledFirmwareRevisionValue[ state=success ] { animation-index: 1; }
+Label.FirmwareUpdaterInstalledFirmwareRevisionValue[ state=fail ] { animation-index: 2; }
+
+
+Label.FirmwareUpdaterInstalledFirmwareRevisionLabel // was: .LabelFirmwareInst
+{
+	font-name: 					$fontRaldoId;
+	font-size: 					$fontLabelSize;
+	foreground-color: 			$colorLabel;
+	margin-top:	 				1px;	
+	width: 						128px;
+}
+
+
+Label.FirmwareUpdaterSerialNumberValue // was: .ValueSerialNumber
+{
+	image: 						url( "Text_Display.png" );
+	fixed-left: 				2px;
+	fixed-right: 				2px;
+	width: 						200px;
+	animations: 				4;
+	animation-index: 			0;
+	margin-top: 				1px;
+	picture-includes-margin: 	true;
+	font-name: 					$fontRaldoId;
+	font-size: 					$fontLabelSize;
+	horizontal-alignment: 		center;
+	foreground-color: 			$colorButtonFont;
+}
+
+
+Label.FirmwareUpdaterSerialNumberLabel // was: LabelSerialNumber
+{
+	font-name: 					$fontRaldoId;
+	font-size: 					$fontLabelSize;
+	foreground-color: 			$colorLabel;
+	margin-top: 				1px;	
+	width: 						128px;
+}
+
+
+Bar#FirmwareUpdaterFirmwarePanelDeviceImage // was: #DeviceUpdaterInfoPanelRight
+{
+	image: 						url("device.png");
+	background-color: 			no;	
+	width: 						95px;
+	outer-margin-top: 			10;
+}
+
+
+Bar#FirmwareUpdaterFirmwarePanelDeviceImage[product=KK25]
+{
+	image: 						url("device_KK25.png");
+}
+
+Bar#FirmwareUpdaterFirmwarePanelDeviceImage[product=KK61]
+{
+	image: 						url("device_KK61.png");
+}
+
+Bar#FirmwareUpdaterFirmwarePanelDeviceImage[product=KK88]
+{
+	image: 						url("device_KK88.png");
+}
+
+Bar#FirmwareUpdaterFirmwarePanelDeviceImage[product=KKS61m2]
+{
+	image: 						url("device-KKS61.png");
+}
+
+Bar#FirmwareUpdaterFirmwarePanelDeviceImage[product=KKS88m2]
+{
+	image: 						url("device-KKS88.png");
+}
+
+Bar#FirmwareUpdaterFirmwarePanelDeviceImage[product=KKA49]
+{
+	image: 						url("device-KKA49.png");
+}
+
+Bar#FirmwareUpdaterFirmwarePanelDeviceImage[product=KKA61]
+{
+	image: 						url("device-KKA61.png");
+}
+
+Label#FirmwareUpdaterFirmwarePanelDeviceImageOverlay
+{
+    background-color: 			rgba( 255, 255, 255, 217 );
+    height: 					72px;
+}
+
+
+//// Overlay ////
+
+Button#FirmwareUpdaterOverlay // was: #DeviceUpdaterOverlay
+{
+	background-color: 			rgba (0,0,0,128);
+}
+
+
+Bar#FirmwareUpdaterOverlayPanel // was: #FirmwareUpdaterOverlayPanel
+{
+	image: 						url ( "Bg_Overlay_FU.png" );
+	vertical-alignment: 		top;
+	picture-includes-margin: 	true;
+	margin-left: 				13px;
+	outer-margin-left: 			16px;
+	outer-margin-top: 			10px;
+}
+
+
+Label#FirmwareUpdaterAboutTitle
+{
+	font-name: 					$fontRaldoId;
+	font-size: 					16;
+	horizontal-alignment: 		left;
+	foreground-color: 			$colorBlack;
+    width: 						340px;
+    height: 					22px;
+    outer-margin-top: 			10px;
+}
+
+
+Label#FirmwareUpdaterAboutTitle[titleLength=large]
+{
+	font-name: 					$fontRaldoId;
+	font-size: 					14;
+	horizontal-alignment: 		left;
+	foreground-color: 			$colorBlack;
+    width: 						340px;
+    height: 					22px;
+    outer-margin-top: 			10px;
+}
+
+
+Bar#FirmwareUpdaterAboutInfos // was: DeviceUpdaterAboutInfos
+{
+	background-color: 			no;
+	outer-margin-top: 			13px;
+}
+
+Label#FirmwareUpdaterAboutCopyright
+{
+	font-name: 					$fontRaldoId;
+	font-size: 					11;
+	horizontal-alignment: 		left;
+	foreground-color: 			$colorBlack;
+	outer-margin-top: 			0px;
+	outer-margin-left: 			26px;
+	width: 						48px;
+}
+
+
+Label#FirmwareUpdaterAboutVersion // was: DeviceUpdaterAboutVersion
+{
+	font-name: 					$fontRaldoId;
+	font-size: 					11;
+	horizontal-alignment: 		left;
+	foreground-color: 			$colorBlack;
+	width: 						200px;
+}
+
+
+Label#FirmwareUpdaterAboutFirmwareRevision
+{
+	font-name: 					$fontRaldoId;
+	font-size: 					11;
+	horizontal-alignment: 		left;
+	foreground-color: 			$colorBlack;
+	width: 						160px;
+	outer-margin-top: 			-2;
+}
+
+
+Bar#FirmwareUpdaterAboutContributors
+{
+    outer-margin-top: 			15px;
+    outer-margin-left: 			0px;
+    height: 					100px;
+    width: 						410px;
+}
+
+
+Label#FirmwareUpdaterAboutContributorsLine
+{
+	font-name: 					$fontRaldoId;
+	font-size: 					11;
+	horizontal-alignment: 		left;
+	foreground-color: 			$colorBlack;
+	height: 					16;
+}
+
+
+/***********************************************************************************************************************
+ ____            _          __        ___     _            _   
+|  _ \  ___  ___(_) __ _ _ _\ \      / (_) __| | __ _  ___| |_ 
+| | | |/ _ \/ __| |/ _` | '_ \ \ /\ / /| |/ _` |/ _` |/ _ \ __|
+| |_| |  __/\__ \ | (_| | | | \ V  V / | | (_| | (_| |  __/ |_ 
+|____/ \___||___/_|\__, |_| |_|\_/\_/  |_|\__,_|\__, |\___|\__|
+                   |___/                        |___/          
+***********************************************************************************************************************/
+
+
+*#DesignWidget *
+{
+  background-color: 			no;
+  background-border-color: 		no;
+  foreground-color: 			rgb( 0, 0, 0 );
+}
+
+Label#spacer 
+{
+  background-color: 			no;
+  min-width: 					1;
+  min-height: 					1;
+}
+
+Bar#sizer 
+{
+  spacing: 						2;
+}
+
+Button#collapser 
+{
+  min-width: 					18;
+  foreground-color: 			no; 
+  horizontal-alignment: 		center;
+}
+
+Button#collapser[state=empty] 
+{
+	background-color: 			no; 
+	animation-index: 			2;
+}
+
+Button#collapser[state=collapsed] 
+{
+	background-color: 			no;
+	animation-index: 			1;		
+}
+
+Button#collapser[state=expanded] 
+{
+	background-color: 			no;	
+	animation-index: 			0;	
+}
+
+Mover#mover
+{
+  image: 						url( "top_bar.png" );
+  fixed-left: 					3;
+  fixed-right: 					3;
+  foreground-color: 			rgba( 0, 0, 0, 0 );
+}	
+
+Bar#DesignWidget TextEdit
+{
+  background-color: 			rgb( 240, 240, 240 );
+  foreground-color: 			rgb( 0, 0, 0 );
+  selection-background-color: 	rgb( 192, 192, 192 );
+  selection-foreground-color: 	rgb( 0, 0, 0 );
+  font-resid: 					1;
+  font-size: 					12;
+  min-width: 					96;
+  margin: 						2;
+}
+
+*#DesignWidget PopupMenu
+{
+  width: 						500;
+}
+
+
+*#DesignWidget PopupMenu.Design Bar
+{
+  spacing: 						0;
+  font-resid: 					1;
+  font-size: 					12;
+}
+
+*#DesignWidget PopupMenu.Design Button
+{
+  background-color: 			rgba( 109, 175, 206, 240 );  //changed for better contrast
+  font-resid: 					1;
+  font-size: 					12;
+  margin-left: 					5px;								//additionally added for better visibility
+  margin-right: 				5px;							//additionally added for better visibility
+} 
+
+
+//----------------------------------------------- bottom bar
+
+Bar#scrollbarenclosingbar 
+{
+  image: 						url( "bottom_bar.png" );
+  fixed-left: 					3;
+  fixed-right: 					11;
+}
+
+Bar#scrollbarenclosingbar Sizer
+{
+  width: 						16;
+}
+
+
+//----------------------------------------------- tree view
+
+tree<Bar>.Design
+{
+  foreground-color: no;
+  image: 						url( "tree_bg.png" );
+  fixed-left: 					0;
+  fixed-right: 					0;
+  fixed-top: 					1;
+  fixed-bottom: 				0;
+}
+
+tree<Bar>.Design::Bar#widgets
+{
+  margin-top: 					3;
+}
+
+tree<Bar>.Design::Bar#widgets Button
+{
+  foreground-color: 			rgb( 0, 0, 0 );
+  font-resid: 					1;
+  font-size: 					12;
+}
+
+tree<Bar>.Design::Bar#widgets Button:over
+{
+  background-color: 			rgba( 78, 102, 125, 30 );
+}
+
+tree<Bar>.Design::Bar#widgets Button#collapser[state=empty]:over
+{
+  background-color: 			no;
+}
+
+tree<Bar>.Design::Bar#widgets Button:selected
+{
+  background-color: 			rgba( 78, 102, 125, 195 );
+  background-border-color: 		rgb( 255, 0, 0 );
+  foreground-color: 			rgb( 235, 237, 235 );
+}
+
+tree<Bar>.Design::Bar#widgets Button:selected:over
+{
+  background-color: 			rgba( 78, 102, 125, 200 );
+  background-border-color: 		rgb( 255, 0, 0 );
+  foreground-color: 			rgb( 235, 237, 235 );
+}
+
+tree<Bar>.Design::Bar#widgets::Bar
+{
+  height: 						20;
+}
+
+
+//----------------------------------------------- 
+
+Bar#dotted_background
+{
+	background-color: 			no;
+	image: 						url( "top_dotted.png" );
+	fixed-left: 				0;
+	fixed-right: 				0;
+	fixed-top: 					0;
+	fixed-bottom: 				0;
+}
+
+Bar#DesignWidget Bar#top
+{
+	background-color: 			no;
+	min-height: 				32;
+	min-width: 					300;
+	spacing: 					10;
+	margin-left: 				10;
+	margin-top:	 				6;
+}
+
+
+//----------------------------------------------- Scrollbars
+
+Bar#DesignWidget Scrollbar
+{
+  margin-top: 					1;
+  margin-bottom: 				1;
+  margin-left: 					1;
+}
+
+Bar#DesignWidget Scrollbar::Button 
+{
+  background-color: 			no;
+  foreground-color: 			no;
+}
+
+Bar#DesignWidget Scrollbar[isHorizontal=false]::Button#inc
+{
+  image: url( "scrollbar_dec.png" );
+  margin-left: 					1;
+}
+
+Bar#DesignWidget Scrollbar[isHorizontal=false]::Button#dec
+{
+  image: url( "scrollbar_inc.png" );
+  margin-left: 					1;
+}
+
+Bar#DesignWidget Scrollbar[isHorizontal=true]::Button#inc
+{
+  image: url( "scrollbar_inc_ho.png" );
+  margin-top: 					1;
+}
+
+Bar#DesignWidget Scrollbar[isHorizontal=true]::Button#dec
+{
+  image: url( "scrollbar_dec_ho.png" );
+  margin-top: 					1;
+}
+
+Bar#DesignWidget Scrollbar[isHorizontal=false]::Slider
+{
+  image: 						url( "scrollbar_bg.png" );
+  margin-top: 					0;
+  margin-bottom: 				0;
+  fixed-top: 					0;
+  fixed-bottom: 				0;
+}
+
+Bar#DesignWidget Scrollbar[isHorizontal=true]::Slider
+{
+  image: 						url( "scrollbar_bg_ho.png" );
+  margin-left: 					0;
+  margin-right: 				0;
+  fixed-left: 					0;
+  fixed-right: 					0;
+}
+
+Bar#DesignWidget Scrollbar[isHorizontal=false]::Slider::Grip
+{
+  image:	 					url( "scrollbar_slider_gr_wide.png" );
+  fixed-top: 					10;
+  fixed-bottom: 				10;
+  margin: 						2;
+}
+
+Bar#DesignWidget Scrollbar[isHorizontal=true]::Slider::Grip
+{
+  image: 						url( "scrollbar_slider_ho.png" );
+  fixed-left: 					10;
+  fixed-right: 					10;
+  margin: 						2;
+}
+
+//----------------------------------------------- Buttons
+
+Bar#top Button
+{
+	background-color: 			no;
+	image: 						url( "button.png" );
+	animations: 				3;
+	foreground-color: 			rgb( 235, 237, 235 );
+	horizontal-alignment: 		center;
+}
+
+Bar#top  Button:over
+{
+	background-color: 			no;
+	animation-index: 			2;
+}
+
+Bar#top  Button:down
+{
+	background-color:		 	no;
+	animation-index: 			1;
+}
+
+Label#logo
+{
+	background-color: 			no;
+	image:						url( "logo.png" );
+	margin-right: 				11;
+	margin-top: 				3;
+	foreground-color: 			rgb( 0, 0, 0 );
+}
+
+Bar Label#SelectionWidget
+{
+  image: 						url( "selection.png" );
+  fixed-left: 					6;
+  fixed-right: 					6;
+  fixed-top: 					6;
+  fixed-bottom: 				6;
+  margin: 						2;
+  picture-includes-margin: 		true;
+}
+
+Bar#DesignWidget Vector::Label#draglabel[between_rows=true]
+{
+  height: 						3;
+  background-color: 			no;
+}
+
+Button#show-frame 
+{
+  background-color: 			no; 
+  background-border-color: 		rgb( 255, 0, 0 ); 
+}
+
+
+/***********************************************************************************************************************
+ ____       _               __        ___     _            _
+|  _ \  ___| |__  _   _  __ \ \      / (_) __| | __ _  ___| |_ 
+| | | |/ _ \ '_ \| | | |/ _` \ \ /\ / /| |/ _` |/ _` |/ _ \ __|
+| |_| |  __/ |_) | |_| | (_| |\ V  V / | | (_| | (_| |  __/ |_ 
+|____/ \___|_.__/ \__,_|\__, | \_/\_/  |_|\__,_|\__, |\___|\__|
+                        |___/                   |___/          
+***********************************************************************************************************************/
+
+
+
+Bar#DebugWidgetRow
+{
+    background-color: 			rgb(255, 255, 255);
+    margin-left: 				5;
+}
+
+
+DebugWidget#DebugWindowMainWidget
+{
+    background-color: 			rgb(0, 255, 255);
+    foreground-color: 			rgb(0, 255, 255);
+}
+
+
+
+TextEdit.DesignWidgetTextEdit
+{
+  background-color: 			rgb( 255, 255, 255 );
+  foreground-color: 			rgb( 0, 0, 0 );
+  selection-background-color: 	rgb( 192, 192, 192 );
+  selection-foreground-color: 	rgb( 0, 0, 0 );
+  background-border-color: 		rgb( 0, 0, 0 ); 
+  font-resid: 					1;
+  font-size: 					12;
+  width: 						80;
+  height: 						20;
+  margin: 						2;
+  outer-margin: 				2;
+}
+
+
+Label.DesignWidgetLabel
+{
+	font-name: 					$fontRaldoId;
+	font-size: 					$fontLabelSize;
+	foreground-color: 			$colorLabel;
+	margin-top: 				1px;	
+	width: 						250px;
+}
+
+
+Button.DesignWidgetButton
+{
+	margin: 					2px;
+    outer-margin: 				2;
+	horizontal-alignment: 		center;
+	font-name: 					$fontRaldoId;
+	font-size: 					$fontButtonSize;
+	foreground-color: 			$colorButtonFont;
+    background-color: 			rgb(240, 240, 240);
+    width: 						80px;
+    height: 					20px;
+    background-border-color:	rgb(0, 0, 0);
+}
+

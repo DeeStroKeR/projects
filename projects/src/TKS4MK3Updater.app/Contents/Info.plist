@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist SYSTEM "file://localhost/System/Library/DTDs/PropertyList.dtd">
+<plist version="1.0">
+	<dict>
+		<key>CFBundleVersion</key>
+		<string>1.3.0 (R202), Copyright © 2019 Native Instruments GmbH</string>
+		<key>CFBundleShortVersionString</key>
+		<string>1.3.0 (R202)</string>
+		<key>CFBundleGetInfoString</key>
+		<string>1.3.0 (R202), Copyright © 2019 Native Instruments GmbH</string>
+		<key>CFBundleName</key>
+		<string>TKS4MK3Updater</string>
+		<key>CFBundleSignature</key>
+		<string>????</string>
+		<key>CFBundlePackageType</key>
+		<string>APPL</string>
+		<key>CFBundleExecutable</key>
+		<string>TKS4MK3Updater</string>
+		<key>CFBundleIconFile</key>
+		<string>TKS4MK3Updater.icns</string>
+		<key>CFBundleIdentifier</key>
+		<string>com.native-instruments.TKS4MK3 Updater</string>
+		<key>CFBundleIconFile</key>
+		<string>TKS4MK3Updater.icns</string>
+		<key>CFBundleIdentifier</key>
+		<string>com.native-instruments.TKS4MK3 Updater</string>
+		<key>CFBundleDevelopmentRegion</key>
+		<string>English</string>
+		<key>CFBundleInfoDictionaryVersion</key>
+		<string>6.0</string>
+		<key>NSPrincipalClass</key>
+		<string>NSApplication</string>
+		<key>NSAppSleepDisabled</key>
+		<true/>
+		<key>LSMinimumSystemVersion</key>
+		<string>10.11.0</string>
+	</dict>
+</plist>
